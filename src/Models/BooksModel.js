@@ -1,5 +1,3 @@
-const ObjectId = mongoose.Types.Schema.ObjectId
-const { timeStamp } = require('console')
 const mongoose = require('mongoose')
 
 const bookModel = new mongoose.Schema({
@@ -15,7 +13,7 @@ const bookModel = new mongoose.Schema({
     },
     
     userId:{
-        type:ObjectId,
+        type:mongoose.Types.Schema.ObjectId,
         ref:'User'
     },
     ISBN:{
