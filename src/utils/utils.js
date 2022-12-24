@@ -23,5 +23,8 @@ const isValidString = function(value){
     return true
 }
 
+const isValidObjectId = function(objectId) {
+    return mongoose.Types.ObjectId.isValid(objectId)
+}
 
-module.exports = {isValid,isValidTitle,isValidemail, isValidRequestBody,isValidString}
+module.exports = {isValid,isValidTitle,isValidemail, isValidRequestBody,isValidString,isValidObjectId}
