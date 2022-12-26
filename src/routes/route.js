@@ -17,4 +17,14 @@ router.post('/books',middleware.Authentication, Books.createBooks)
 
 router.get('/books',middleware.Authentication,Books.getBooks )
 
+router.get('/books/:bookId', middleware.Authentication, middleware.Authorisation, Books.getbookById)
+
+router.put('/books/:bookId', middleware.Authentication, middleware.Authorisation, Books.updateBookById)
+
+router.delete('/books/:bookId', middleware.Authentication, middleware.Authorisation, Books.deletebookById)
+
+
+//review
+
+
 module.exports = router
