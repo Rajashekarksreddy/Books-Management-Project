@@ -30,6 +30,10 @@ const reviewBooks = new mongoose.Schema({
         type:Boolean,
         default:false
 
+    },
+    reviewedAt: {
+        type:Date,
+        require:true
     }
 })
 
