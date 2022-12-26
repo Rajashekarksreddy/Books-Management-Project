@@ -2,6 +2,8 @@ const express = require('express')
 const userRegister = require('../Controllers/UserController')
 const Books = require('../Controllers/BooksController')
 
+const reviews =  require('../Controllers/ReviewController')
+
 let middleware = require('../middleware/middleware')
 
 const router = express.Router()
@@ -26,5 +28,6 @@ router.delete('/books/:bookId', middleware.Authentication, middleware.Authorisat
 
 //review
 
+router.post('/books/:bookId/review', middleware.Authentication,middleware.Authorisation, reviews.addreview)
 
 module.exports = router
