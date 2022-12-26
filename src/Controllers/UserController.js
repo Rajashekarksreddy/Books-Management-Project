@@ -1,6 +1,8 @@
 const UserModel = require('../Models/UserModel')
 const validator = require('../utils/utils')
 
+const jwt = require('jsonwebtoken')
+
 
 const userRegister = async function(req,res){
     try{
@@ -44,8 +46,44 @@ const userRegister = async function(req,res){
 }
 
 
+const Login = async function(req,res){
+   
+    try{
+   let data = req.body
 
+   if(!validator.isValidRequestBody(data)){
+    return res.status(400).send({status:false, message:'invalid request body please provide some details'})
+   }
+
+   let user = await UserModel.findOne({email:data.email, password:data.password})
+
+   if(!user){
+    return res.status(400).send({status:false, message:"user email and password not match"})
+   }
+
+   //creating a token if successfully logged in
+
+  var token = jwt.sign(
+    {userId:user._id.toString()},
+    'BOOKMANAGEMENT',{
+        expiresIn:'24hrs'
+    }
+  )
+
+  //setting in a token header as well
+
+  res.setHeader("x-api-key",token)
+
+  return res.status(200).send({status:true, message:"Login successfully", data:token})
+
+}catch(error){
+     console.log(error.message)      
+}
+
+}
 
 module.exports.userRegister = userRegister
+
+module.exports.Login = Login
 
 

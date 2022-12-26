@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const objectId = mongoose.Types.ObjectId
 
 const bookModel = new mongoose.Schema({
 
@@ -13,7 +14,8 @@ const bookModel = new mongoose.Schema({
     },
     
     userId:{
-        type:mongoose.Types.Schema.ObjectId,
+        type:objectId,
+        required:true,
         ref:'User'
     },
     ISBN:{
